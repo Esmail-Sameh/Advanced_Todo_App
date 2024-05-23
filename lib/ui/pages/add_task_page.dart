@@ -12,7 +12,11 @@ class _AddTaskPageState extends State<AddTaskPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Container(),
+      body: Column(
+        children: [
+
+        ],
+      ),
     );
   }
 }

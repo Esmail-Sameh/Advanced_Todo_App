@@ -4,10 +4,11 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:todo_app_advanced/services/theme_services.dart';
 import 'package:todo_app_advanced/ui/pages/home_page.dart';
 import 'package:todo_app_advanced/ui/pages/notification_screen.dart';
+import 'package:todo_app_advanced/ui/size_config.dart';
 import 'package:todo_app_advanced/ui/theme.dart';
 
 
-void main() {
+void main(context) {
   runApp(const MyApp());
 }
 

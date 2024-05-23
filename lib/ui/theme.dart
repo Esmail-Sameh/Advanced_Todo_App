@@ -26,58 +26,58 @@ class Themes {
       brightness: Brightness.dark,
   );
 
-  /// get heading text style
-  TextStyle get headingTextStyle{
-    return GoogleFonts.lato(
-      color: Get.isDarkMode ? Colors.white  : Colors.black ,
-      fontSize: 24,
-      fontWeight: FontWeight.bold,
-    );
-  }
+}
 
-  /// get sup heading text style
-  TextStyle get supHeadingTextStyle {
-    return GoogleFonts.lato(
-      color: Get.isDarkMode ? Colors.white : Colors.black,
-      fontSize: 20,
-      fontWeight: FontWeight.bold,
-    );
-  }
+/// get heading text style
+TextStyle get headingTextStyle{
+  return GoogleFonts.lato(
+    color: Get.isDarkMode ? Colors.white  : Colors.black ,
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+  );
+}
 
-  /// get title text style
-  TextStyle get titleTextStyle{
-    return GoogleFonts.lato(
-      color: Get.isDarkMode ? Colors.white  : Colors.black ,
-      fontSize: 18,
-      fontWeight: FontWeight.w400,
-    );
-  }
+/// get sup heading text style
+TextStyle get supHeadingTextStyle {
+  return GoogleFonts.lato(
+    color: Get.isDarkMode ? Colors.white : Colors.black,
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
+}
 
-  /// get sup title text style
-  TextStyle get supTitleTextStyle{
-    return GoogleFonts.lato(
-      color: Get.isDarkMode ? Colors.white  : Colors.black ,
-      fontSize: 16,
-      fontWeight: FontWeight.w400,
-    );
-  }
+/// get title text style
+TextStyle get titleTextStyle{
+  return GoogleFonts.lato(
+    color: Get.isDarkMode ? Colors.white  : Colors.black ,
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
+  );
+}
 
-  /// get body text style
-  TextStyle get bodyTextStyle{
-    return GoogleFonts.lato(
-      color: Get.isDarkMode ? Colors.white  : Colors.black ,
-      fontSize: 14,
-      fontWeight: FontWeight.w400,
-    );
-  }
+/// get sup title text style
+TextStyle get supTitleTextStyle{
+  return GoogleFonts.lato(
+    color: Get.isDarkMode ? Colors.white  : Colors.black ,
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+  );
+}
 
-  /// get body2 text style
-  TextStyle get body2TextStyle{
-    return GoogleFonts.lato(
-      color: Get.isDarkMode ? Colors.grey[200]  : Colors.black ,
-      fontSize: 14,
-      fontWeight: FontWeight.w400,
-    );
-  }
+/// get body text style
+TextStyle get bodyTextStyle{
+  return GoogleFonts.lato(
+    color: Get.isDarkMode ? Colors.white  : Colors.black ,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
+}
 
+/// get body2 text style
+TextStyle get body2TextStyle{
+  return GoogleFonts.lato(
+    color: Get.isDarkMode ? Colors.grey[200]  : Colors.black ,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
 }
