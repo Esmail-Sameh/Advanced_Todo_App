@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 
 import '../theme.dart';
 
-class NotificationScreen extends StatelessWidget {
-  const NotificationScreen({super.key});
+class NotificationPage extends StatelessWidget {
+  const NotificationPage({super.key});
 
   @override
   Widget build(BuildContext context) {

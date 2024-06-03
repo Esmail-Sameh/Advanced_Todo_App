@@ -1,37 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:intl/intl.dart';
-import 'package:todo_app_advanced/ui/widgets/button.dart';
-import 'package:todo_app_advanced/ui/widgets/input_field.dart';
+// ignore_for_file: prefer_const_constructors
 
-import '../theme.dart';
+import 'package:todo_app_advanced/constant/app_imports.dart';
 
-class AddTaskPage extends StatefulWidget {
-  const AddTaskPage({Key? key}) : super(key: key);
-
-  @override
-  State<AddTaskPage> createState() => _AddTaskPageState();
-}
-
-class _AddTaskPageState extends State<AddTaskPage> {
-  final _titleController = TextEditingController();
-  final _noteController = TextEditingController();
-  DateTime _selectedDate = DateTime.now();
-  String _startDate = DateFormat('hh:mm a').format(DateTime.now()).toString();
-  String _endDate = DateFormat('hh:mm a')
-      .format(DateTime.now().add(Duration(minutes: 15)))
-      .toString();
-  int _selectedRemind = 5;
-  List<int> remindList = [5, 10, 15, 20];
-  String _selectedRepeat = 'None';
-  List<String> repeatList = ['None', 'Daily', 'Weekly', 'Monthly'];
-  int _selected_color = 0;
+class AddTaskPage extends StatelessWidget {
+  final TaskController controller = Get.put(TaskController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.theme.dialogBackgroundColor,
-      appBar: _AppBar(),
+      appBar: _AppBar(controller, context),
       body: Container(
         child: SingleChildScrollView(
           child: Padding(
@@ -39,27 +17,27 @@ class _AddTaskPageState extends State<AddTaskPage> {
             child: Column(
               children: [
                 Text(
-                  'Add Task',
+                  AppStrings.addTaskPageTitle,
                   style: supHeadingTextStyle,
                 ),
 
                 /// Title field
                 InputField(
-                  title: 'Title',
-                  hint: 'Enter title here',
-                  controller: _titleController,
+                  title: AppStrings.titleText,
+                  hint: AppStrings.enterTitleHereText,
+                  controller: controller.titleController,
                 ),
 
                 /// Note field
                 InputField(
-                    title: 'Note',
-                    hint: 'Enter note here',
-                    controller: _noteController),
+                    title: AppStrings.noteText,
+                    hint: AppStrings.enterNoteHereText,
+                    controller: controller.noteController),
 
                 /// Date field
                 InputField(
-                  title: 'Date',
-                  hint: 'Enter note here',
+                  title: AppStrings.dataText,
+                  hint: AppStrings.enterNoteHereText,
                   widget: Row(
                     children: [
                       Icon(
@@ -79,8 +57,8 @@ class _AddTaskPageState extends State<AddTaskPage> {
                     /// Start date
                     Expanded(
                         child: InputField(
-                      title: 'Start date',
-                      hint: _startDate,
+                      title: AppStrings.startDateText,
+                      hint: controller.startDate,
                       widget: Row(
                         children: [
                           Icon(
@@ -101,8 +79,8 @@ class _AddTaskPageState extends State<AddTaskPage> {
                     /// End date
                     Expanded(
                         child: InputField(
-                      title: 'End date',
-                      hint: _endDate,
+                      title: AppStrings.endDateText,
+                      hint: controller.endDate,
                       widget: Row(
                         children: [
                           Icon(
@@ -120,12 +98,13 @@ class _AddTaskPageState extends State<AddTaskPage> {
 
                 /// Remind date
                 InputField(
-                  title: 'Remind',
-                  hint: '$_selectedRemind minutes early',
+                  title: AppStrings.remindText,
+                  hint:
+                      '${controller.selectedRemind} ${AppStrings.minutesEarlyText}',
                   widget: Row(
                     children: [
                       DropdownButton(
-                        items: remindList
+                        items: controller.remindList
                             .map(
                               (int value) => DropdownMenuItem<String>(
                                 value: value.toString(),
@@ -148,10 +127,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
                         dropdownColor: Colors.blueGrey,
                         borderRadius: BorderRadius.circular(10),
                         onChanged: (newValue) {
-                          setState(() {
-                            _selectedRemind = int.parse(newValue!);
-                            print(_selectedRemind);
-                          });
+                          controller.selectedRemindFunction(newValue);
                         },
                       ),
                       SizedBox(
@@ -163,12 +139,12 @@ class _AddTaskPageState extends State<AddTaskPage> {
 
                 /// Repeat date
                 InputField(
-                  title: 'Repeat',
-                  hint: _selectedRepeat,
+                  title: AppStrings.repeatText,
+                  hint: controller.selectedRepeat,
                   widget: Row(
                     children: [
                       DropdownButton(
-                        items: repeatList
+                        items: controller.repeatList
                             .map(
                               (String? value) => DropdownMenuItem<String>(
                                   value: value,
@@ -178,10 +154,8 @@ class _AddTaskPageState extends State<AddTaskPage> {
                                   )),
                             )
                             .toList(),
-                        onChanged: (newValue) {
-                          setState(() {
-                            _selectedRepeat = newValue!;
-                          });
+                        onChanged: (String? newValue) {
+                          controller.selectedRepeatFunction(newValue);
                         },
                         underline: Container(
                           height: 0,
@@ -208,9 +182,9 @@ class _AddTaskPageState extends State<AddTaskPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _selectedColorPaletes(),
+                      _selectedColorPaletes(controller),
                       MyButton(
-                          text: 'Create Task',
+                          text: AppStrings.createTaskText,
                           onTap: () {
                             Get.back();
                           }),
@@ -225,55 +199,55 @@ class _AddTaskPageState extends State<AddTaskPage> {
     );
   }
 
-  Widget _selectedColorPaletes() => Column(
+  Widget _selectedColorPaletes(TaskController controller) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Color',
+            AppStrings.colorText,
             style: titleTextStyle,
           ),
-          _colorItems(),
+          _colorItems(controller),
         ],
       );
 
-  Widget _colorItems()=>Wrap(
-    children: List.generate(
-      3,
+  Widget _colorItems(TaskController controller) => Wrap(
+        children: List.generate(
+          3,
           (index) => GestureDetector(
-        onTap: () {
-          setState(() {
-            _selected_color = index;
-          });
-        },
-        child: Padding(
-          padding: const EdgeInsets.only(right: 8),
-          child: CircleAvatar(
-            backgroundColor: index == 0
-                ? bluishClr
-                : index == 1
-                ? orangeClr
-                : pinkClr,
-            radius: 11,
-            child: _selected_color == index
-                ? Icon(
-              Icons.done,
-              color: Colors.white,
-              size: 12,
-            )
-                : null,
+            onTap: () {
+              // setState(() {
+              //   _selected_color = index;
+              // });
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: CircleAvatar(
+                backgroundColor: index == 0
+                    ? bluishClr
+                    : index == 1
+                        ? orangeClr
+                        : pinkClr,
+                radius: 11,
+                child: controller.selected_color == index
+                    ? Icon(
+                        Icons.done,
+                        color: Colors.white,
+                        size: 12,
+                      )
+                    : null,
+              ),
+            ),
           ),
         ),
-      ),
-    ),
-  );
+      );
 
-   PreferredSizeWidget? _AppBar ()=>AppBar(
-     backgroundColor: context.theme.dialogBackgroundColor,
-    actions: [
-      CircleAvatar(
-        backgroundImage: AssetImage('assets/images/person.jpeg'),
-        radius: 20,
-      ),
-    ],
-  );
+  PreferredSizeWidget? _AppBar(TaskController controller, context) => AppBar(
+        backgroundColor: context.theme.dialogBackgroundColor,
+        actions: [
+          CircleAvatar(
+            backgroundImage: AssetImage(AppStrings.personImages),
+            radius: 20,
+          ),
+        ],
+      );
 }

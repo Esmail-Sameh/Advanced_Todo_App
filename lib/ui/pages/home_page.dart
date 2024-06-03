@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:todo_app_advanced/services/theme_services.dart';
-import 'package:todo_app_advanced/ui/pages/add_task_page.dart';
-import 'package:todo_app_advanced/ui/size_config.dart';
-import 'package:todo_app_advanced/ui/widgets/button.dart';
+// ignore_for_file: prefer_const_constructors
 
-import '../widgets/input_field.dart';
+
+
+
+import 'package:intl/intl.dart';
+import 'package:todo_app_advanced/constant/app_imports.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -23,21 +22,8 @@ class _HomePageState extends State<HomePage> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
           children: [
-            InputField(
-              title: 'Title',
-              hint: 'Enter Task Title',
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            MyButton(
-                text: 'add text',
-                onTap: () {
-                  Get.to(AddTaskPage());
-                }),
+            _addTaskBar(),
           ],
         ),
       ),
@@ -48,7 +34,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Theme.of(context).dialogBackgroundColor,
         actions: [
           CircleAvatar(
-            backgroundImage: AssetImage('assets/images/person.jpeg'),
+            backgroundImage: AssetImage(AppStrings.personImages),
             radius: 20,
           ),
         ],
@@ -61,4 +47,24 @@ class _HomePageState extends State<HomePage> {
               : Icons.nightlight_round_outlined),
         ),
       );
+
+  Widget _addTaskBar(){
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(AppStrings.homePageDateTitle, style: supHeadingTextStyle,),
+              Text(AppStrings.homePageTitle , style: headingTextStyle,),
+            ],
+          ),
+          MyButton(text: AppStrings.addTaskText, onTap: () {
+
+          },),
+        ],
+      ),
+    );
+  }
 }
