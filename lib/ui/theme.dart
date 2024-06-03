@@ -15,8 +15,12 @@ class Themes {
   /// light theme
   static var light =  ThemeData(
     primaryColor: primaryClr,
-    dialogBackgroundColor: primaryClr,
+    dialogBackgroundColor: Colors.white,
     brightness: Brightness.light,
+    appBarTheme: AppBarTheme(
+      backgroundColor: primaryClr,
+      centerTitle: true,
+    ),
   );
 
   /// dark theme
@@ -24,6 +28,10 @@ class Themes {
       primaryColor: darkGreyClr,
       dialogBackgroundColor: darkGreyClr,
       brightness: Brightness.dark,
+    appBarTheme: AppBarTheme(
+      backgroundColor: darkGreyClr,
+      centerTitle: true,
+    ),
   );
 
 }
