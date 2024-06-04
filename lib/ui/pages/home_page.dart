@@ -1,19 +1,11 @@
-// ignore_for_file: prefer_const_constructors
-
-
-
-
+import 'package:date_picker_timeline/date_picker_timeline.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_app_advanced/constant/app_imports.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     // SizeConfig().init(context);
@@ -24,6 +16,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             _addTaskBar(),
+            _addDateBar(),
           ],
         ),
       ),
@@ -48,7 +41,7 @@ class _HomePageState extends State<HomePage> {
         ),
       );
 
-  Widget _addTaskBar(){
+  Widget _addTaskBar() {
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -56,14 +49,50 @@ class _HomePageState extends State<HomePage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(AppStrings.homePageDateTitle, style: supHeadingTextStyle,),
-              Text(AppStrings.homePageTitle , style: headingTextStyle,),
+              Text(
+                AppStrings.homePageDateTitle,
+                style: supHeadingTextStyle,
+              ),
+              Text(
+                AppStrings.homePageTitle,
+                style: headingTextStyle,
+              ),
             ],
           ),
-          MyButton(text: AppStrings.addTaskText, onTap: () {
-
-          },),
+          MyButton(
+            text: AppStrings.addTaskText,
+            onTap: () {},
+          ),
         ],
+      ),
+    );
+  }
+
+  Widget _addDateBar() {
+    return Container(
+      child: DatePicker(
+        DateTime.now(),
+        width: 70,
+        height: 90,
+        selectedTextColor: Colors.white,
+        initialSelectedDate: DateTime.now(),
+        selectionColor: primaryClr,
+        dateTextStyle: GoogleFonts.lato(
+          color: Colors.grey,
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+        ),
+        dayTextStyle: GoogleFonts.lato(
+          color: Colors.grey,
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+        ),
+        monthTextStyle: GoogleFonts.lato(
+          color: Colors.grey,
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+        ),
+
       ),
     );
   }
