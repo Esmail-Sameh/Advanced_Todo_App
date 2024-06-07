@@ -4,7 +4,7 @@ class AppPages {
   static  List<GetPage> pages = [
     GetPage(
       name: AppStrings.homeRoute,
-      page: () => const HomePage(),
+      page: () => HomePage(),
     ),
     GetPage(
       name: AppStrings.notificationRoute,

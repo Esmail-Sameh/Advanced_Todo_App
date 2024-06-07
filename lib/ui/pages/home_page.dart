@@ -1,10 +1,13 @@
-import 'package:date_picker_timeline/date_picker_timeline.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
+
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:todo_app_advanced/constant/app_imports.dart';
 
+
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +19,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             _addTaskBar(),
+            SizedBox(height: 10,),
             _addDateBar(),
           ],
         ),
@@ -61,7 +65,9 @@ class HomePage extends StatelessWidget {
           ),
           MyButton(
             text: AppStrings.addTaskText,
-            onTap: () {},
+            onTap: ()async{
+              await Get.toNamed(AppStrings.addTaskRoute);
+            }
           ),
         ],
       ),
