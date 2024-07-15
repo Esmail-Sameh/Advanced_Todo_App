@@ -1,16 +1,13 @@
-
-
-
-import 'package:todo_app_advanced/constant/app_pages.dart';
-
 import 'constant/app_imports.dart';
 
-void main(context) {
+void main(context)async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await NotifyHelper.init();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +17,6 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeServices().theme,
       title: 'To Do',
       debugShowCheckedModeBanner: false,
-
       initialRoute: AppStrings.homeRoute,
       getPages: AppPages.pages,
     );
