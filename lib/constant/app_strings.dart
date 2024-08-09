@@ -1,6 +1,9 @@
 import 'package:intl/intl.dart';
 
 class AppStrings {
+  /// App Name
+  static const String appName = "TO DO";
+
   /// App Titles.
   static const String addTaskPageTitle = 'Add Task';
   static const String homePageTitle = 'Today';
@@ -42,5 +45,8 @@ class AppStrings {
 
   /// Home Page Text
   static const String addTaskText = '+ Add Task';
+  static const String todoText = 'TODO';
+  static const String completedText = 'Completed';
+
 
 }

@@ -1,3 +1,5 @@
+import 'package:todo_app_advanced/ui/size_config.dart';
+
 import 'constant/app_imports.dart';
 
 void main(context)async {
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: Themes.light,
       darkTheme: Themes.dark,
       themeMode: ThemeServices().theme,
-      title: 'To Do',
+      title: AppStrings.appName,
       debugShowCheckedModeBanner: false,
       initialRoute: AppStrings.homeRoute,
       getPages: AppPages.pages,

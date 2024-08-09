@@ -1,13 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../theme.dart';
+import '../../constant/app_imports.dart';
 
 class NotificationPage extends StatelessWidget {
-  const NotificationPage({super.key});
+  // const NotificationPage({required String payload});
 
   @override
   Widget build(BuildContext context) {
+    String arg = Get.arguments;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: context.theme.dialogBackgroundColor,

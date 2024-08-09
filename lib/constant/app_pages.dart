@@ -8,11 +8,11 @@ class AppPages {
     ),
     GetPage(
       name: AppStrings.notificationRoute,
-      page: () => const NotificationPage(),
+      page: () =>  NotificationPage(),
     ),
     GetPage(
       name: AppStrings.addTaskRoute,
-      page: () =>  AddTaskPage(),
+      page: () => AddTaskPage(),
     ),
   ];
 }

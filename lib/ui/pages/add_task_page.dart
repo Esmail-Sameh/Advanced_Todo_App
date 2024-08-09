@@ -3,7 +3,7 @@
 import 'package:todo_app_advanced/constant/app_imports.dart';
 
 class AddTaskPage extends StatelessWidget {
-  final TaskController controller = Get.put(TaskController());
+   final TaskController controller = Get.put(TaskController());
 
   @override
   Widget build(BuildContext context) {
